@@ -1,0 +1,28 @@
+SUJI CAFÉ — WORKSHOP PAYMENTS + LIVE NAVIGATION
+===================================================
+This full project is derived from your uploaded final.zip and earlier live-navigation fix.
+Do NOT overwrite or delete your existing .env, database, or stored customer data.
+
+Run (from project folder):
+  python -m pip install -r requirements.txt
+  python app.py
+
+Existing DB: When the Flask app starts, workshop_payments.initialize() creates the
+workshop_payments table automatically. New bookings get a frozen payment amount.
+
+CUSTOMER: Workshop → reserve a date/time and number of guests. Displays total and
+Unpaid status. After staff actually records payment, View payment receipt appears.
+
+STAFF: Workshop → Confirm reservation → Record Cash / GCash payment. Cash must be
+received; GCash must be verified in the real wallet and enter a 13-digit reference.
+Do NOT record a payment merely because a customer shows a screenshot.
+
+OWNER: Workshop → cancellation after actual payment shows Refund required.
+Return the money outside the website FIRST, then record the actual full refund.
+Admin can see payments but cannot record workshop refunds.
+
+LIVE NAVIGATION: Workspace tabs remain clickable after 5-second refresh.
+The HTML viewer file is a separate tool, not part of Flask's public site.
+
+This update adds no online transfer API, so it never sends/receives GCash money.
+Always back up your database and .env before replacing the website's source files.

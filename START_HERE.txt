@@ -1,0 +1,51 @@
+SUJI CAFE - COMPLETE UPDATED SOURCE
+
+This ZIP combines ALL changes in this conversation, not just the latest batch.
+Includes Python backend, templates, CSS/JS, images/data, SQL schemas, tests and setup docs.
+
+IF YOU ALREADY HAVE THE WEBSITE RUNNING:
+1. Back up your existing project and database first.
+2. Extract this ZIP into a NEW folder; open suji-cafe-final in VS Code.
+3. Copy your existing private .env into this folder. Do not replace credentials with .env.example.
+4. Keep your existing MySQL database. For SQLite development, copy your existing suji.db into this folder and retain DB_BACKEND=sqlite in your .env.
+5. Copy your original static/uploads and private/payments folders if used. These user-uploaded files and the database are deliberately not bundled.
+6. Create a fresh virtual environment and install requirements.txt (commands below).
+7. Ensure PUBLIC_BASE_URL is set in .env for emailed invitations. For the same computer: http://127.0.0.1:5000. Real invitees need your reachable HTTPS origin.
+8. Restart Flask, then hard-refresh the browser (Ctrl+Shift+R).
+
+WINDOWS TERMINAL (inside suji-cafe-final):
+py -m venv .venv
+.venv\Scripts\activate
+python -m pip install -r requirements.lock
+python app.py
+
+Open http://127.0.0.1:5000
+
+FOR A FRESH INSTALL:
+Read README.md. Copy .env.example to .env, fill your own settings, create the MySQL database, and use flask --app app create-owner for first Owner setup. Do not create a second Owner on an existing database unnecessarily.
+
+WHAT'S INCLUDED:
+- Email code verification before customer signup creates an account.
+- Login loading protection, required markers, birthday dropdowns and per-tab signup draft (no stored passwords).
+- Responsive authentication/homepage/shared UI improvements.
+- Spaced Owner/Admin product cards and filters; Staff counter live search preserves quantities.
+- Email-only employee invitations; invited Admin/Staff/Rider enter their own names, mobile and password. Only Owner can invite Admins.
+- All-role My Account validation, employee account management and customer order updates.
+- Password recovery and device/access checks.
+
+EXCLUDED:
+Private .env/credentials, live/demo database, payment proofs, user uploads, installed venv dependencies and Python caches.
+
+SECURITY RELEASE:
+Read SECURITY_SETUP.md before online deployment. Local testing uses APP_ENV=development and HTTPS=0. Production requires APP_ENV=production, HTTPS=1, strong private SECRET_KEY, valid PUBLIC_BASE_URL/ALLOWED_HOSTS, debug and OTP printing disabled, and a correctly configured TLS proxy/production server. Remote MySQL requires MYSQL_SSL_CA.
+
+Logout clears the authenticated session but retains device trust for seven idle days. On the same trusted browser, sign in again with your password without a new email code. New/expired/revoked devices still require verification. Normal accounts, orders, menu and settings are kept. No account cleanup/deletion is performed by applying this code.
+
+TEST STATUS:
+See SECURITY_TEST_RESULTS.md for the final results and limits. Security checks use disposable SQLite/MySQL databases and mocked emails. Real email/Google delivery and production infrastructure still need deployment testing.
+
+OWNER RECOVERY / SUCCESSION:
+The complete source now includes terminal-only Owner recovery with a private database backup, an authorized transfer record and one-hour email acceptance. It does NOT run automatically when you install this update. Read OWNER_RECOVERY_SETUP.md before any real operation. Never use the live cafe database for a demonstration. Regular seven-day trust across logout remains in place; a completed succession explicitly revokes the former Owner's access.
+
+GUIDELINES:
+The earlier docs/GUIDELINES_AUDIT.md is a historical review, not a final compliance approval. Guidelines review was deferred while improving the website.

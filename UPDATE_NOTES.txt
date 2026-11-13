@@ -1,0 +1,32 @@
+UPDATE — Cash payments, receipts and workshop — 13 November 2026
+Your uploaded design and the previous Owner-only payment settings fix remain.
+
+1. Payment review: open an unpaid/rejected GCash order, expand "Customer paid cash instead?".
+Enter the exact amount applied after returning change, an explanation, and confirm actual
+cash collection at the cafe plus no received GCash transfer. Staff, Admin and Owner can do
+this. Submitted transfers must first be reviewed/rejected; do not collect twice.
+The SAME order becomes Cash / Paid (pending orders become Preparing), with an audit record.
+This is cash received AT THE CAFE, not a request to switch to unpaid COD.
+The rider collects zero for an already-paid delivery.
+
+2. My Orders updates the payment method/status and receipt link automatically.
+Payment receipts require confirmed payment, including checks on direct URLs. Previously
+paid orders retain their refund/void records. Dine-in, pickup and counter receipts do not
+show a Delivery fee line. Delivery receipts still show it.
+
+3. Reserve my slot opens the existing confirmation modal before submitting.
+4. Staff workshop confirm/cancel returns to the Workshop tab. Confirmed reservations
+no longer show a Confirm button; cancelled reservations have no action buttons.
+5. Owner/Admin show Completed for dine-in/counter, Picked up for pickup and Delivered
+for delivery. Stored status values remain compatible; no database migration needed.
+
+INSTALL: Back up your project. Replace the EXISTING files listed in the source viewer.
+Add tests/test_cash_receipt_workshop.py only if you keep the optional test suite.
+The test_commerce.py change supplies the existing location-confirmation field in test
+checkout requests. No production location rules changed.
+Restart Flask, then hard refresh your browser (Ctrl+F5). Keep your .env and database.
+
+CHECKS: 11 feature tests + 3 payment-settings permission tests + 9 GCash tests passed.
+Native browser flow passed: modal cancel/confirm, staff tab retention, cash modal,
+live customer payment/receipt update, dine-in receipt and Owner/Admin status labels.
+No JavaScript errors in those browser flows. Full legacy suite was not rerun for this update.
